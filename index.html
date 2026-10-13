@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>京都砥石層マップ</title>
+  <meta name="description" content="論文の地質図を Maplat で実際の地図に位置合わせし、京都天然砥石の砥石山と丹波帯の地層の帯の関係を可視化する">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.10.0/ol.css">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>京都砥石層マップ <small>論文の地質図 × Maplat で、砥石山と地層の帯の関係を見る</small></h1>
+  </header>
+
+  <main>
+    <section class="pane">
+      <div class="paneHead">
+        <b>① 論文の図（Maplat）</b>
+        <span class="switch">
+          <button data-map="fig2a" class="on">論文の図-2(a)</button>
+          <button data-map="gsj200k">20万分の1地質図</button>
+          <button data-map="gsi">地理院地図</button>
+        </span>
+      </div>
+      <div id="maplat"></div>
+      <p class="paneNote">論文の図・20万分の1地質図を<b>歪めずに</b>表示しています。📍 は図から抽出した砥石山（実座標から Maplat で図の上へ逆変換して表示）。図を切り替えると、同じ砥石山が各図のどこにあたるかを見比べられます。</p>
+    </section>
+
+    <section class="pane">
+      <div class="paneHead">
+        <b>② 実際の地図（変換後）</b>
+        <span class="switch">
+          <label><input type="checkbox" id="show200k"> 20万分の1地質図を重ねる</label>
+          <label><input type="checkbox" id="showUnrecorded" checked> 未記録区間</label>
+        </span>
+      </div>
+      <div id="real"></div>
+      <div class="legend">
+        <span style="--c:#f08a24">Type 1（チャート・珪質岩）</span>
+        <span style="--c:#2f74c0">Type 2（砕屑岩）</span>
+        <span style="--c:#777">Type II 地層群</span>
+        <span style="--c:#ffd400;--b:#c00">未記録区間（Type 1 だが 300m 以内に砥石山なし）</span>
+        <span class="dot">砥石山</span>
+        <span style="--c:#1a9850">OSM の採掘跡・坑口・露頭など</span>
+      </div>
+    </section>
+
+    <aside class="side">
+      <h2>結果</h2>
+      <div id="summary"></div>
+      <h2>OSM との答え合わせ</h2>
+      <div id="osm"><p class="hint">Overpass API から取得中…</p></div>
+      <h2>階層</h2>
+      <div id="tree"></div>
+      <div id="detail"><p class="hint">右の地図の砥石山・帯をクリックすると詳細が出ます。</p></div>
+      <p class="caution">⚠️ 位置合わせは、20万分の1地質図「京都及大阪（第2版）」のチャートと論文の図のチャートが最もよく重なる位置を自動で探したものです（重なり F=0.47）。20万分の1の解像度（1px≒100m）以上の精度はありません。砥石山は図の記号を自動抽出したもので、名称・層・称号は未入力です。</p>
+      <footer>
+        <a href="https://github.com/furuhashilab/Hackathon_Oct_Aki-Sato/blob/main/docs/IMRAD.md" target="_blank" rel="noopener">研究ノート（IMRAD）</a><br>
+        図：出典論文の図-2(a)（井本ほか 1989・木村 2000 に加筆。著作権は原著者）／20万分の1地質図幅「京都及大阪（第2版）」（産総研地質調査総合センター）／
+        <a href="https://www.maplat.jp/" target="_blank" rel="noopener">Maplat</a>（Apache-2.0）／
+        <a href="https://maplibre.org/" target="_blank" rel="noopener">MapLibre</a>／
+        <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル</a>／
+        OSM データ © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>（ODbL）<br>
+        データ・コード © 2026 Aki Sato / FuruhashiLab — <a href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener">CC BY 4.0</a>
+      </footer>
+    </aside>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/ol@10.10.0/dist/ol.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@maplat/core@1.0.0/dist/maplat_core.umd.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
