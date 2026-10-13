@@ -63,4 +63,5 @@ cd .. && python3 -m http.server 8000   # → http://localhost:8000/
 （論文の図・20万分の1地質図は対象外。OSM データ © OpenStreetMap contributors（ODbL）。Maplat: Apache-2.0、MapLibre GL JS: BSD-3-Clause、OpenLayers: BSD-2-Clause、地理院タイル）
 
 ---
-このリポジトリの作成・更新は Claude Code で行いました。
+このリポジトリの作成・更新は Claude Code で行いました。<img width="2400" height="1500" alt="kyoto_toishi_graphic_recording" src="https://github.com/user-attachments/assets/c7700c31-33ca-47b2-88b7-704e11ae3c75" />
+
