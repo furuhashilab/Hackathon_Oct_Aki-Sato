@@ -1,0 +1,17 @@
+{
+ "mines": 22,
+ "mines_on_type1": 2,
+ "mines_within_300m_of_type1": 7,
+ "median_dist_type1_m": 531,
+ "type1_area_share": 0.165,
+ "type1_bands": 38,
+ "type1_bands_with_mine": 6,
+ "type1_bands_unrecorded": 32,
+ "unrecorded_area_ha": 991.7,
+ "random_within_300m_of_type1": 0.357,
+ "area_share_type_II": 0.117,
+ "mines_in_type_I": 17,
+ "mines_in_type_II": 0,
+ "mines_confirmed_both": 8,
+ "mines_within_300m_share": 0.318
+}
